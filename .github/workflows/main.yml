@@ -1,7 +1,7 @@
 name: 'Update dependencies reminder'
 on:
   schedule:
-    - cron: /5 * * * *
+    - cron: 1/5 * * * *
 
 jobs:
   weekly-report:
