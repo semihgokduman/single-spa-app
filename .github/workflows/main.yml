@@ -15,6 +15,18 @@ jobs:
       run: |
         echo ::set-env name=BRANCH_NAME::$(date +%F)
         echo ::set-env name=WEEK_OF::"Week of $(date '+%B %d, %Y')"
+        
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: npm install
+    - run: npm run build --if-present
+    - run: npm test
+      env:
+        CI: true
+
     # Push changes and set env variable for branch name
     - name: Commit and push notes scaffold to branch
       env:
