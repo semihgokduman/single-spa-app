@@ -1,7 +1,7 @@
 name: 'Update dependencies reminder'
 on:
   schedule:
-    - cron: 1/15 * * * *
+    - cron: 1/5 * * * *
 
 jobs:
   weekly-report:
@@ -53,7 +53,7 @@ jobs:
         git config --global user.name $GITHUB_ACTOR
         git checkout -b $BRANCH_NAME
         git add .
-        git diff-index --quiet HEAD || commit -m "Please check you dependencies"
+        git commit -m "Adds meeting notes scaffold"
         git push --force --set-upstream "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" $BRANCH_NAME
     # Open pull request
     - name: Open pull request for reminder
