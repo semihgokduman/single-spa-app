@@ -1,7 +1,7 @@
 name: 'Update dependencies reminder'
 on:
   schedule:
-    - cron: 1/35 * * * *
+    - cron: 1 * * * *
 
 jobs:
   weekly-report:
@@ -38,7 +38,9 @@ jobs:
         \
         ### What is changed ? \
         \
-        - [TODO]' $f
+        - [TODO]\
+        \
+        \' $f
         \
         \
         done
