@@ -28,6 +28,21 @@ jobs:
       env:
         CI: true
 
+    # Create meeting notes scaffold
+    - name: Create weekly notes scaffold file
+      run:  |
+        for f in docs/changelog.md
+        do
+        sed -i '/# Changelog/a\
+        ## '"$WEEK_OF"'\
+        \
+        ### What is changed ? \
+        \
+        - [TODO]' $f
+        \
+        \
+        done
+
     # Push changes and set env variable for branch name
     - name: Commit and push notes scaffold to branch
       env:
