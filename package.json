@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --verbose",
     "start": "webpack-dev-server --open",
     "build": "webpack --config webpack.config.js -p"
   },
@@ -29,6 +29,7 @@
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.4.2",
     "html-loader": "^0.5.5",
+    "jest": "^25.4.0",
     "style-loader": "^1.1.3",
     "vue-loader": "^15.9.0",
     "vue-template-compiler": "^2.6.11",
