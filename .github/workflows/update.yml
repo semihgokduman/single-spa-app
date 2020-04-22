@@ -29,7 +29,7 @@ jobs:
         CI: true
 
     # Create meeting notes scaffold
-    - name: Create weekly notes scaffold file
+    - name: Create changelog scaffold file
       run:  |
         for f in docs/changelog.md
         do
@@ -44,7 +44,7 @@ jobs:
         done
 
     # Push changes and set env variable for branch name
-    - name: Commit and push notes scaffold to branch
+    - name: Commit and push changelog scaffold to branch
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
