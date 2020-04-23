@@ -38,7 +38,7 @@ jobs:
         git config --global user.name $GITHUB_ACTOR
         git checkout -b $BRANCH_NAME
         git add .
-        git diff-index --quiet HEAD || git git commit -m "Npm Audit"
+        git commit --allow-empty -m "Npm audit"
         git push --force --set-upstream "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" $BRANCH_NAME
     # Open pull request
     - name: Open pull request for reminder
