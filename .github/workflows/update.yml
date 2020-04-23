@@ -1,10 +1,10 @@
 name: 'Update dependencies reminder'
 on:
   schedule:
-    - cron: 1 15 * * *
+    - cron: 1/5 * * * *
 
 jobs:
-  weekly-report:
+  npm-audit:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout workspace
@@ -28,23 +28,8 @@ jobs:
       env:
         CI: true
 
-    # Create meeting notes scaffold
-    - name: Create changelog scaffold file
-      run:  |
-        for f in docs/changelog.md
-        do
-        sed -i '/# Changelog/a\
-        ## '"$WEEK_OF"'
-        
-        ### What is changed ? 
-        
-        - [TODO]
-        
-        ' $f
-        done
-
     # Push changes and set env variable for branch name
-    - name: Commit and push changelog scaffold to branch
+    - name: Commit and push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
@@ -53,7 +38,7 @@ jobs:
         git config --global user.name $GITHUB_ACTOR
         git checkout -b $BRANCH_NAME
         git add .
-        git commit -m "Adds meeting notes scaffold"
+        git diff-index --quiet HEAD || git git commit -m "Npm Audit"
         git push --force --set-upstream "https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" $BRANCH_NAME
     # Open pull request
     - name: Open pull request for reminder
@@ -64,10 +49,11 @@ jobs:
           const createPull = await github.pulls.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            title: process.env["WEEK_OF"],
+            title: process.env["TODAY"],
             body: "",
             head: process.env["BRANCH_NAME"],
-            base: "master"
+            base: "master",
+            draft: true
           });
           github.issues.addAssignees({
             owner: context.repo.owner,
