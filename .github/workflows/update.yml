@@ -1,7 +1,7 @@
 name: 'Update dependencies reminder'
 on:
   schedule:
-    - cron: 1/5 * * * *
+    - cron: 5 15 * * *
 
 jobs:
   npm-audit:
