@@ -52,8 +52,7 @@ jobs:
             title: process.env["TODAY"],
             body: "",
             head: process.env["BRANCH_NAME"],
-            base: "master",
-            draft: true
+            base: "master"
           });
           github.issues.addAssignees({
             owner: context.repo.owner,
