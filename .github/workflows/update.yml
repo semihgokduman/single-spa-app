@@ -1,14 +1,14 @@
 name: 'Update dependencies reminder'
 on:
   schedule:
-    - cron: 5 * * * *
+    - cron: 1/5 * * * *
 
 jobs:
   npm-audit:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout workspace
-      uses: actions/checkout@master
+    - uses: actions/checkout@v2
 
     # Get date and store as environment variables
     - name: Get and store variables
@@ -16,7 +16,6 @@ jobs:
         echo ::set-env name=BRANCH_NAME::$(date +%F)
         echo ::set-env name=TODAY::"Npm audit for $(date '+%B %d, %Y')"
         
-    - uses: actions/checkout@v2
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
