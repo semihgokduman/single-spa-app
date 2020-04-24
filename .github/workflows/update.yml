@@ -8,14 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout workspace
-    - uses: actions/checkout@v2
-
+      uses: actions/checkout@v2
+      
     # Get date and store as environment variables
     - name: Get and store variables
       run: |
         echo ::set-env name=BRANCH_NAME::$(date +%F)
         echo ::set-env name=TODAY::"Npm audit for $(date '+%B %d, %Y')"
-        
+
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
